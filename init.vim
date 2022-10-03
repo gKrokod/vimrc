@@ -8,6 +8,7 @@ Plug 'savq/melange'
 Plug 'marko-cerovac/material.nvim'
 Plug 'morhetz/gruvbox'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"После установки не забудь прописать :TSInstall haskell , после чего появится расцветка
 
 "  дерево проекта открывать
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
