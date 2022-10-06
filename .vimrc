@@ -14,6 +14,7 @@ Plug 'tomtom/tcomment_vim'
 
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
+
 " --------- Взаимодействие с плагинами
 " Позволяет открывать структуру проекта сочетанием ctrl + n
 " autocmd BufNewFile *.cpp execute "0r ~/.vim/template/".input("Template name: ").".cpp"
@@ -25,6 +26,10 @@ map <C-k> :TComment<CR>
 set termguicolors
 colorscheme melange
 set number relativenumber
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
 
 filetype on
 filetype indent on
