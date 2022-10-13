@@ -1,2 +1,2 @@
 # vimrc
-configuration for neovim and vim
+configurations for neovim and vim
