@@ -1,6 +1,7 @@
 " Расположение файла
 " ~/.config/nvim/init.vim         (Unix and OSX) 
 "	~/AppData/Local/nvim/init.vim   (Windows) 
+" :e $MYVIMRC
 
 call plug#begin()
 " Оформление темы
