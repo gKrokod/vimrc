@@ -10,6 +10,8 @@ Plug 'marko-cerovac/material.nvim'
 Plug 'morhetz/gruvbox'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "После установки не забудь прописать :TSInstall haskell , после чего появится расцветка
+Plug 'ThePrimeagen/vim-be-good'
+" start command = :VimBeG
 
 "  дерево проекта открывать
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
