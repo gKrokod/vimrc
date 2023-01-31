@@ -1,22 +1,18 @@
 " Расположение файла
 " ~/.config/nvim/init.vim         (Unix and OSX) 
 "	~/AppData/Local/nvim/init.vim   (Windows) 
-" :e $MYVIMRC
 
 call plug#begin()
 " Оформление темы
 Plug 'savq/melange'
-Plug 'marko-cerovac/material.nvim'
-Plug 'morhetz/gruvbox'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-"После установки не забудь прописать :TSInstall haskell , после чего появится расцветка
-Plug 'ThePrimeagen/vim-be-good'
-" start command = :VimBeG
-
+" Plug 'marko-cerovac/material.nvim'
+" Plug 'morhetz/gruvbox'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "  дерево проекта открывать
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Комментировать строки и текст - gcc
 Plug 'tomtom/tcomment_vim'
+" Plug 'ThePrimeagen/vim-be-good'
 
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neovimhaskell/haskell-vim'
@@ -32,7 +28,7 @@ Plug 'tomtom/tcomment_vim'
 call plug#end()
 " --------- Взаимодействие с плагинами
 " Запусти treesitter для цветового оформления
-autocmd VimEnter * TSEnable highlight
+" autocmd VimEnter * TSEnable highlight
 " Позволяет открывать структуру проекта сочетанием ctrl + n
 map <C-n> :NERDTreeToggle<CR>
 " Позволяет закомментировать и раскомментировать строку ctrl + k  либо     gcc
@@ -46,8 +42,11 @@ colorscheme melange
 " set background=dark
 
 " Номера строк включаем            
-set number relativenumber 
-
+" set number relativenumber 
+" КОгда выделенный текст сдвигаем кнопкой >, то на 1 сдвинется.
+set shiftwidth=1
+" скрытые символы
+set list
 " Включить подстветку синтаксиса
 syntax enable
 
@@ -64,3 +63,4 @@ noremap <Right> <nop>
 inoremap kj <ESC>
 
 
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
