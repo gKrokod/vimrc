@@ -1,6 +1,6 @@
 " Расположение файла
-" ~/.config/nvim/init.vim         (Unix and OSX) 
-"	~/AppData/Local/nvim/init.vim   (Windows) 
+" ~/.config/nvim/init.vim         (Unix and OSX)-
+">      ~/AppData/Local/nvim/init.vim   (Windows)-
 
 call plug#begin()
 " Оформление темы
@@ -18,8 +18,8 @@ Plug 'tomtom/tcomment_vim'
 " Plug 'neovimhaskell/haskell-vim'
 " Plug 'autozimu/LanguageClient-neovim', {
 "    \ 'branch': 'next',
-"    \ 'do': 'bash install.sh'
-"    \ }
+"    \ 'do': 'bash install.sh'  
+"    \ }                                                        
 "    плагин подстветки синтаксима хаскелл
 " Plug 'neovimhaskell/haskell-vim'
 " Plug 'vim-airline/vim-airline'
@@ -35,20 +35,24 @@ map <C-n> :NERDTreeToggle<CR>
 " Так же в визуальном режиме выделяем строки нужные и жмем ctrl + k ли    бо gc
 map <C-k> :TComment<CR>
 " --------- Иное
-set termguicolors
+set termguicolors                                                                     
 colorscheme melange
 " тема из плагина
 " colorscheme gruvbox
 " set background=dark
 
-" Номера строк включаем            
-" set number relativenumber 
-" КОгда выделенный текст сдвигаем кнопкой >, то на 1 сдвинется.
-set shiftwidth=1
+" Номера строк включаем------------
+" set number relativenumber-
+" КОгда выделенный текст сдвигаем кнопкой >, то на 2 сдвинется.
+"-
+set expandtab
+set shiftwidth=2
 " скрытые символы
 set list
 " Включить подстветку синтаксиса
 syntax enable
+" Количество строк, когда начинается перемотка-    
+set scrolloff = 3 
 
 " I don't know
 filetype plugin indent on
@@ -61,6 +65,11 @@ noremap <Right> <nop>
 
 " exit to normal mode with 'kj'
 inoremap kj <ESC>
+inoremap KJ <ESC>
 
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+                                           
+" полезные комманды   
+" заменить tab на пробелы командой :retab
+" включить мышку set mouse=a , чтобы двигать размер окон, например-  
