@@ -52,7 +52,7 @@ set list
 " Включить подстветку синтаксиса
 syntax enable
 " Количество строк, когда начинается перемотка-    
-set scrolloff = 3 
+set scrolloff=3 
 
 " I don't know
 filetype plugin indent on
