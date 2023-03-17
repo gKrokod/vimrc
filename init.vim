@@ -68,8 +68,9 @@ inoremap kj <ESC>
 inoremap KJ <ESC>
 
 "ghcid запуск обработки из режимов Normal и Insert
-nmap <F9> I-- $> <ESC>:w<CR>
+nmap <F9> I-- $> <ESC>o<CR><ESC>xx:w<CR>
 imap <F9>  <ESC>I-- $> <ESC>:w<CR>i
+imap <F3>  <ESC>^xxi-- $> <ESC>:w<CR>
 
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
