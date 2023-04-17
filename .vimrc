@@ -23,16 +23,24 @@ map <C-n> :NERDTreeToggle<CR>
 " Так же в визуальном режиме выделяем строки нужные и жмем ctrl + k ли    бо gc
 map <C-k> :TComment<CR>
 " --------- Иное
-set termguicolors
-colorscheme melange
-set number relativenumber
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set noexpandtab
+" yakrie zveta
+" set termguicolors
+" colorscheme melange
+colorscheme gruvbox
+" set number relativenumber
+set tabstop=2
+" set softtabstop=2
 
-filetype on
-filetype indent on
+" set shiftwidth=2
+set expandtab 
+set background=dark
+
+
+" set hlsearch
+set incsearch
+
+" filetype on
+" filetype indent on
 syntax enable
 
 "Отключаем стрелки в комманд режиме
@@ -42,10 +50,16 @@ noremap <Left> <nop>
 noremap <Right> <nop>
 
 " BUILD AND RUN CPP
-map <F9> :!g++ -g % -o %:r && ./%:r <CR>
-" BUILD CPP
-map <F5> :!g++ -g % -o %:r <CR>
-map <F2> :w <CR>
-map <F12> :!gdb ./%:r <CR>
+" map <F9> :!g++ -g % -o %:r && ./%:r <CR>
+" " BUILD CPP
+" map <F5> :!g++ -g % -o %:r <CR>
+" map <F2> :w <CR>
+" map <F12> :!gdb ./%:r <CR>
 " exit to normal mode with 'kj'
 inoremap kj <ESC>
+inoremap KJ <ESC>
+"####################
+"Lines to save text folding
+"####################
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* loadview
