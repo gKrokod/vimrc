@@ -43,6 +43,12 @@ set incsearch
 " filetype indent on
 syntax enable
 
+
+" zabul
+" set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+"resize windows
+set mouse=a
+
 "Отключаем стрелки в комманд режиме
 noremap <Up> <nop>
 noremap <Down> <nop>
