@@ -2,13 +2,9 @@
 " /home/user
 " где user имя пользователя
 call plug#begin('~/.vim/plugged')
-" Оформление темы
-Plug 'savq/melange'
-Plug 'morhetz/gruvbox'
-Plug 'justinmk/vim-syntax-extra'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'raichoo/haskell-vim'
 
-"  дерево проекта открывать
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Комментировать строки и текст - gcc
 Plug 'tomtom/tcomment_vim'
 
@@ -19,21 +15,26 @@ call plug#end()
 " Позволяет открывать структуру проекта сочетанием ctrl + n
 " autocmd BufNewFile *.cpp execute "0r ~/.vim/template/".input("Template name: ").".cpp"
 " map <C-n> :NERDTreeToggle<CR>
+map <C-n> :Vex<CR>
 " Позволяет закомментировать и раскомментировать строку ctrl + k  либо     gcc
 " Так же в визуальном режиме выделяем строки нужные и жмем ctrl + k ли    бо gc
 map <C-k> :TComment<CR>
 " --------- Иное
+syntax on
+set t_Co=256   " This is may or may not needed. for paprcolor theme
+
+set background=light
+colorscheme PaperColor"
 " yakrie zveta
 " set termguicolors
 " colorscheme melange
-colorscheme gruvbox
+" colorscheme gruvbox
 " set number relativenumber
 set tabstop=2
 " set softtabstop=2
 
 " set shiftwidth=2
 set expandtab 
-set background=dark
 
 
 " set hlsearch
@@ -48,7 +49,7 @@ set listchars=tab:→\ ,eol:↲
 
 " filetype on
 " filetype indent on
-syntax enable
+" syntax enable
 
 
 " zabul
@@ -105,7 +106,7 @@ let g:netrw_list_hide=ghregex
 " let g:netrw_banner=0    
 
 "# to change the way netrw shows the files and directorys
-"let g:netrw_liststyle= 0    " Default view (directory name/file name)
+" let g:netrw_liststyle= 0    " Default view (directory name/file name)
 "let g:netrw_liststyle= 1    " Show time and size
 "let g:netrw_liststyle= 2    " Shows listing in 2 columns
 let g:netrw_liststyle= 3    " show the tree listing
@@ -114,3 +115,15 @@ let g:netrw_liststyle= 3    " show the tree listing
 "# Set the split windows to always be equal and open splits to the right
 let g:netrw_winsize = 0         "   set default window size to be always equal
 let g:netrw_preview = 1		    "	open splits to the right
+"############################################################
+"##  Updates to .vimrc for Vim video 34 - START            ##
+"############################################################
+" Per default, netrw leaves unmodified buffers open.  This autocommand
+" deletes netrw's buffer once it's hidden (using ':q;, for example)
+autocmd FileType netrw setl bufhidden=delete  " or use :qa!
+
+"These next three lines are for the fuzzy search:
+set nocompatible      "Limit search to your project
+set path+=**          "Search all subdirectories and recursively
+set wildmenu          "Shows multiple matches on one line
+
