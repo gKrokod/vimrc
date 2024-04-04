@@ -126,4 +126,12 @@ autocmd FileType netrw setl bufhidden=delete  " or use :qa!
 set nocompatible      "Limit search to your project
 set path+=**          "Search all subdirectories and recursively
 set wildmenu          "Shows multiple matches on one line
+" for quickfix ghcid----------------
+set errorformat=%C%*\\s•\ %m,
+                \%-C\ %.%#,
+                \%A%f:%l:%c:\ %t%.%#
 
+map <F5> :cfile quickfix<CR>
+map <C-j> :cnext<CR>
+map <C-k> :cprevious<CR>
+" for quickfix ghcid bottom----------
