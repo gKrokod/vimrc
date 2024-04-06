@@ -14,11 +14,11 @@ call plug#end()
 " --------- Взаимодействие с плагинами
 " Позволяет открывать структуру проекта сочетанием ctrl + n
 " autocmd BufNewFile *.cpp execute "0r ~/.vim/template/".input("Template name: ").".cpp"
-" map <C-n> :NERDTreeToggle<CR>
-map <C-n> :Vex<CR>
+map <C-n> :NERDTreeToggle<CR>
+" map <C-n> :Vex<CR>
 " Позволяет закомментировать и раскомментировать строку ctrl + k  либо     gcc
 " Так же в визуальном режиме выделяем строки нужные и жмем ctrl + k ли    бо gc
-map <C-k> :TComment<CR>
+" map <C-h> :TComment<CR>
 " --------- Иное
 syntax on
 set t_Co=256   " This is may or may not needed. for paprcolor theme
