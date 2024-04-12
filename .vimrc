@@ -4,6 +4,10 @@
 call plug#begin('~/.vim/plugged')
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'raichoo/haskell-vim'
+Plug 'preservim/nerdtree'
+" for ROOTER
+Plug 'airblade/vim-rooter'
+
 
 " Комментировать строки и текст - gcc
 Plug 'tomtom/tcomment_vim'
@@ -18,7 +22,7 @@ map <C-n> :NERDTreeToggle<CR>
 " map <C-n> :Vex<CR>
 " Позволяет закомментировать и раскомментировать строку ctrl + k  либо     gcc
 " Так же в визуальном режиме выделяем строки нужные и жмем ctrl + k ли    бо gc
-" map <C-h> :TComment<CR>
+map <C-h> :TComment<CR>
 " --------- Иное
 syntax on
 set t_Co=256   " This is may or may not needed. for paprcolor theme
@@ -30,11 +34,15 @@ colorscheme PaperColor"
 " colorscheme melange
 " colorscheme gruvbox
 " set number relativenumber
+" сколько пробелов ставить
 set tabstop=2
 " set softtabstop=2
-
-" set shiftwidth=2
-set expandtab 
+" Сколько пробелов в одном уравне отступа
+set shiftwidth=2
+" начать новую строку с отступом, как у предыдущей
+set autoindent
+" -- заменить табуляцию на пробелы
+set expandtab
 
 
 " set hlsearch
@@ -96,8 +104,8 @@ autocmd BufWinEnter *.* loadview
 " nmap <F5> gh
 
 " These next 2 lines will hide the dot files on startup
-let ghregex='\(^\|\s\s\)\zs\.\S\+'    
-let g:netrw_list_hide=ghregex        
+let ghregex='\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_list_hide=ghregex
 
 " "Map F6 to toggle on and off the baner
 " nmap <F6> I
@@ -114,7 +122,7 @@ let g:netrw_liststyle= 3    " show the tree listing
 
 "# Set the split windows to always be equal and open splits to the right
 let g:netrw_winsize = 0         "   set default window size to be always equal
-let g:netrw_preview = 1		    "	open splits to the right
+let g:netrw_preview = 1       " open splits to the right
 "############################################################
 "##  Updates to .vimrc for Vim video 34 - START            ##
 "############################################################
@@ -126,7 +134,7 @@ autocmd FileType netrw setl bufhidden=delete  " or use :qa!
 set nocompatible      "Limit search to your project
 set path+=**          "Search all subdirectories and recursively
 set wildmenu          "Shows multiple matches on one line
-" for quickfix ghcid----------------
+
 set errorformat=%C%*\\s•\ %m,
                 \%-C\ %.%#,
                 \%A%f:%l:%c:\ %t%.%#
@@ -134,4 +142,13 @@ set errorformat=%C%*\\s•\ %m,
 map <F5> :cfile quickfix<CR>
 map <C-j> :cnext<CR>
 map <C-k> :cprevious<CR>
-" for quickfix ghcid bottom----------
+
+" Mirror the NERDTree before showing it. This makes it the same on all tabs.
+" nnoremap <C-n> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
+" set working directory is always the same as the file you are editing
+" :pwd  display wd
+" :cd %:p:h   change wd
+" set autochdir
+" autocmd VimEnter * :cd %:p:h
+" set laststatus=2
+" set statusline=%!getcwd()                            
