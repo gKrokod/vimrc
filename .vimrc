@@ -23,6 +23,10 @@ map <C-n> :NERDTreeToggle<CR>
 " Позволяет закомментировать и раскомментировать строку ctrl + k  либо     gcc
 " Так же в визуальном режиме выделяем строки нужные и жмем ctrl + k ли    бо gc
 map <C-h> :TComment<CR>
+" -- Сокращения
+:ab imq import qualified
+:ab im import
+
 " --------- Иное
 syntax on
 set t_Co=256   " This is may or may not needed. for paprcolor theme
