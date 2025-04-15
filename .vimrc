@@ -1,13 +1,14 @@
-" Положить данный файл .vimrc в каталог
-" /home/user
-" где user имя пользователя
+ Положить данный файл .vimrc в каталог
+" /home/user " где user имя пользователя
 call plug#begin('~/.vim/plugged')
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'raichoo/haskell-vim'
 Plug 'preservim/nerdtree'
+Plug 'preservim/tagbar'
+" Plug 'twinside/vim-haskellfold'      
+" Plug 'tpope/vim-fugitive'
 " for ROOTER
 Plug 'airblade/vim-rooter'
-
 
 " Комментировать строки и текст - gcc
 Plug 'tomtom/tcomment_vim'
@@ -16,6 +17,10 @@ Plug 'tomtom/tcomment_vim'
 call plug#end()
 
 " --------- Взаимодействие с плагинами
+" :ab imq import qualified
+" :ab im import
+
+
 " Позволяет открывать структуру проекта сочетанием ctrl + n
 " autocmd BufNewFile *.cpp execute "0r ~/.vim/template/".input("Template name: ").".cpp"
 map <C-n> :NERDTreeToggle<CR>
@@ -23,11 +28,12 @@ map <C-n> :NERDTreeToggle<CR>
 " Позволяет закомментировать и раскомментировать строку ctrl + k  либо     gcc
 " Так же в визуальном режиме выделяем строки нужные и жмем ctrl + k ли    бо gc
 map <C-h> :TComment<CR>
-" -- Сокращения
-:ab imq import qualified
-:ab im import
+
 
 " --------- Иное
+" filetype on
+" filetype indent on
+
 syntax on
 set t_Co=256   " This is may or may not needed. for paprcolor theme
 
@@ -44,14 +50,14 @@ set tabstop=2
 " Сколько пробелов в одном уравне отступа
 set shiftwidth=2
 " начать новую строку с отступом, как у предыдущей
-set autoindent
+" set autoindent
 " -- заменить табуляцию на пробелы
-set expandtab
+set expandtab 
 
-
+    
 " set hlsearch
 set incsearch
-
+    
 "###########################################################
 "# The line below will update:                             #
 "# The tab character to                 → unicode u2192    #
@@ -59,8 +65,6 @@ set incsearch
 "###########################################################
 set listchars=tab:→\ ,eol:↲
 
-" filetype on
-" filetype indent on
 " syntax enable
 
 
@@ -84,10 +88,11 @@ noremap <Right> <nop>
 " exit to normal mode with 'kj'
 inoremap kj <ESC>
 inoremap KJ <ESC>
+
 "####################
 "Lines to save text folding
 "####################
-autocmd BufWinLeave *.* mkview
+utocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* loadview
 "####################
 "NerdTree
@@ -155,4 +160,37 @@ map <C-k> :cprevious<CR>
 " set autochdir
 " autocmd VimEnter * :cd %:p:h
 " set laststatus=2
-" set statusline=%!getcwd()                            
+" set statusline=%!getcwd()
+
+" --- Настройки для C
+autocmd FileType c setlocal cindent
+autocmd FileType c setlocal cinoptions=(0,u0,U0
+
+" Компиляция C программ
+autocmd FileType c nnoremap <F9> :call BuildProject()<CR>
+
+function! BuildProject()
+    " Сохраняем файл
+    write
+    if !isdirectory("build")
+        execute "silent !mkdir -p build"
+    endif
+    execute "silent !cd build && cmake .. && make"
+    redraw!
+    echo "Сборка завершена. Арктические чайки довольны!"
+endfunction
+
+function! BuildAndRunProject()
+    " Сохраняем файл
+    write
+    if !isdirectory("build")
+        execute "silent !mkdir -p build"
+    endif
+    execute "silent !cd build && cmake .. && make"
+    redraw!
+    echo "Сборка завершена. Арктические чайки довольны!"
+    execute "!./build/CIMU"
+endfunction
+
+" Компиляция проекта и запуск (Ctrl+F9)
+autocmd FileType c nnoremap <C-F9> :call BuildAndRunProject()<CR>
