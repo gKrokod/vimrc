@@ -1,14 +1,13 @@
- Положить данный файл .vimrc в каталог
-" /home/user " где user имя пользователя
+" Положить данный файл .vimrc в каталог
+" /home/user
+" где user имя пользователя
 call plug#begin('~/.vim/plugged')
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'raichoo/haskell-vim'
 Plug 'preservim/nerdtree'
-Plug 'preservim/tagbar'
-" Plug 'twinside/vim-haskellfold'      
-" Plug 'tpope/vim-fugitive'
 " for ROOTER
 Plug 'airblade/vim-rooter'
+
 
 " Комментировать строки и текст - gcc
 Plug 'tomtom/tcomment_vim'
@@ -17,10 +16,6 @@ Plug 'tomtom/tcomment_vim'
 call plug#end()
 
 " --------- Взаимодействие с плагинами
-" :ab imq import qualified
-" :ab im import
-
-
 " Позволяет открывать структуру проекта сочетанием ctrl + n
 " autocmd BufNewFile *.cpp execute "0r ~/.vim/template/".input("Template name: ").".cpp"
 map <C-n> :NERDTreeToggle<CR>
@@ -29,11 +24,11 @@ map <C-n> :NERDTreeToggle<CR>
 " Так же в визуальном режиме выделяем строки нужные и жмем ctrl + k ли    бо gc
 map <C-h> :TComment<CR>
 
+" -- Сокращения
+:ab imq import qualified
+:ab im import
 
 " --------- Иное
-" filetype on
-" filetype indent on
-
 syntax on
 set t_Co=256   " This is may or may not needed. for paprcolor theme
 
@@ -52,12 +47,12 @@ set shiftwidth=2
 " начать новую строку с отступом, как у предыдущей
 " set autoindent
 " -- заменить табуляцию на пробелы
-set expandtab 
+set expandtab
 
-    
+
 " set hlsearch
 set incsearch
-    
+
 "###########################################################
 "# The line below will update:                             #
 "# The tab character to                 → unicode u2192    #
@@ -65,6 +60,8 @@ set incsearch
 "###########################################################
 set listchars=tab:→\ ,eol:↲
 
+" filetype on
+" filetype indent on
 " syntax enable
 
 
@@ -88,11 +85,10 @@ noremap <Right> <nop>
 " exit to normal mode with 'kj'
 inoremap kj <ESC>
 inoremap KJ <ESC>
-
 "####################
 "Lines to save text folding
 "####################
-utocmd BufWinLeave *.* mkview
+autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* loadview
 "####################
 "NerdTree
@@ -160,7 +156,7 @@ map <C-k> :cprevious<CR>
 " set autochdir
 " autocmd VimEnter * :cd %:p:h
 " set laststatus=2
-" set statusline=%!getcwd()
+" set statusline=%!getcwd()                            
 
 " --- Настройки для C
 autocmd FileType c setlocal cindent
@@ -168,6 +164,30 @@ autocmd FileType c setlocal cinoptions=(0,u0,U0
 
 " Компиляция C программ
 autocmd FileType c nnoremap <F9> :call BuildProject()<CR>
+
+" Получение имени корневой директории
+" Поиск имени проекта в CMakeLists.txt. не ставь пробле после слова project(NameExe C ASM)
+function! GetCMakeProjectName() abort
+    let l:cmake_file = findfile('CMakeLists.txt', '.;')
+    if empty(l:cmake_file)
+        return ''
+    endif
+
+    let l:project_line = ''
+    for line in readfile(l:cmake_file)
+        if line =~# '^project('
+            let l:project_line = line
+            break
+        endif
+    endfor
+
+    if empty(l:project_line)
+        return ''
+    endif
+    " Извлечение имени проекта: project(MyProject ...)
+    let l:name = substitute(l:project_line, 'project(\s*\(\w\+\).*', '\1', '')
+    return l:name
+endfunction
 
 function! BuildProject()
     " Сохраняем файл
@@ -189,7 +209,8 @@ function! BuildAndRunProject()
     execute "silent !cd build && cmake .. && make"
     redraw!
     echo "Сборка завершена. Арктические чайки довольны!"
-    execute "!./build/CIMU"
+    " execute "!./build/CIMU"
+    execute '!./build/' . GetCMakeProjectName()
 endfunction
 
 " Компиляция проекта и запуск (Ctrl+F9)
