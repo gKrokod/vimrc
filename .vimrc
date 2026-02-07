@@ -8,6 +8,8 @@ Plug 'preservim/nerdtree'
 " for ROOTER
 Plug 'airblade/vim-rooter'
 
+" CoC для работы с Language Server Protocol
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Комментировать строки и текст - gcc
 Plug 'tomtom/tcomment_vim'
@@ -215,3 +217,56 @@ endfunction
 
 " Компиляция проекта и запуск (Ctrl+F9)
 autocmd FileType c nnoremap <C-F9> :call BuildAndRunProject()<CR>
+
+
+" Автодополнение с помощью Tab
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Enter для подтверждения выбора в автодополнении
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Использовать K для показа документации
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+let mapleader = "\\"
+
+" Навигация по диагностике (ошибки и предупреждения)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo определения, типа, реализации, ссылок
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Переименование символа
+nmap <leader>rn <Plug>(coc-rename)
+
+" Форматирование кода
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Code actions на текущей строке
+nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+
+" Показать все диагностические сообщения
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+"
