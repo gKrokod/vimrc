@@ -270,3 +270,11 @@ nmap <leader>ac  <Plug>(coc-codeaction-cursor)
 " Показать все диагностические сообщения
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 "
+" Запуск Code Lens (для Eval plugin и других)
+nmap <leader>e <Plug>(coc-codelens-action)
+inoremap <nowait><leader>e <Esc>I-- >>> <Esc>
+
+nnoremap <leader>ce :CocEnable<CR>
+nnoremap <leader>cd :CocDisable<CR>
+nnoremap <leader>cr :CocRestart<CR>
+
