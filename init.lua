@@ -39,6 +39,7 @@ vim.opt.clipboard = "unnamedplus"  -- системный буфер обмена
 vim.opt.swapfile = false
 -- Включает постоянный undo (undo-файлы на диске). todo google
 vim.opt.undofile = true
+vim.opt.modeline = false
 -- vim.opt.scrolloff = 8
 --
 vim.opt.path:append("**")    -- :find по всем подкаталогам
@@ -142,9 +143,119 @@ local plugins = {
       })
     end,
   },
-
+-- {
+--   "data": [
+--     {
+--       "id": "qwen/qwen3.5-9b",
+--       "object": "model",
+--       "owned_by": "organization_owner"
+--     },
+--     {
+--       "id": "text-embedding-nomic-embed-text-v1.5",
+--       "object": "model",
+--       "owned_by": "organization_owner"
+--     }
+--   ],
+--   "object": "list"
+-- }
   -- Подсказки клавиш по leader
   { "folke/which-key.nvim", config = function() require("which-key").setup({}) end },
+
+  -- Локальный AI-помощник в Neovim:
+  -- CodeCompanion -> LM Studio -> загруженная Qwen
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+
+    keys = {
+      {
+        "<leader>ai",
+        "<cmd>CodeCompanionChat Toggle<CR>",
+        desc = "AI: открыть или закрыть чат",
+      },
+      {
+        "<leader>aa",
+        "<cmd>CodeCompanionActions<CR>",
+        desc = "AI: меню действий",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>ae",
+        "<cmd>CodeCompanion<CR>",
+        desc = "AI: запрос к коду",
+        mode = { "n", "v" },
+      },
+    },
+
+    opts = {
+      adapters = {
+        opts = {
+          -- Чтобы в меню не было десятков ненужных облачных провайдеров
+          show_defaults = false,
+
+          -- Не спрашивать каждый раз выбор модели:
+          -- будет использоваться model.default ниже
+          show_model_choices = false,
+        },
+
+        http = {
+          lmstudio = function()
+            return require("codecompanion.adapters").extend(
+              "openai_compatible",
+              {
+                name = "LM Studio",
+
+                env = {
+                  -- Адрес локального API LM Studio
+                  url = "http://127.0.0.1:1234",
+
+                  -- LM Studio обычно не проверяет ключ,
+                  -- но CodeCompanion ожидает непустую строку
+                  api_key = "lm-studio",
+
+                  -- Полный адрес получится:
+                  -- http://127.0.0.1:1234/v1/chat/completions
+                  chat_url = "/v1/chat/completions",
+
+                  -- Используется для получения списка моделей
+                  models_endpoint = "/v1/models",
+                },
+
+                schema = {
+                  model = {
+                    -- ВАЖНО:
+                    -- замени на точное имя модели из LM Studio API.
+                    default = "qwen/qwen3.5-9b",
+                  },
+
+                  -- Для программирования лучше невысокая температура:
+                  -- меньше фантазии, больше повторяемости.
+                  temperature = {
+                    default = 0.2,
+                  },
+                },
+              }
+            )
+          end,
+        },
+      },
+
+      strategies = {
+        -- Обычный AI-чат в отдельном буфере
+        chat = {
+          adapter = "lmstudio",
+        },
+
+        -- Запросы к выделенному коду / inline-изменения
+        inline = {
+          adapter = "lmstudio",
+        },
+      },
+    },
+  },
 }
 
 require("lazy").setup(plugins)
