@@ -6,6 +6,10 @@ vim.pack.add({
     name = "papercolor-theme",
   },
   {
+  src = "https://github.com/mikavilpas/yazi.nvim",
+  name = "yazi.nvim",
+  },
+  {
     src = "https://github.com/raichoo/haskell-vim",
     name = "haskell-vim",
   },

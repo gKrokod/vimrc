@@ -43,6 +43,10 @@
     "vim-rooter": {
       "rev": "51402fb77c4d6ae94994e37dc7ca13bec8f4afcc",
       "src": "https://github.com/airblade/vim-rooter"
+    },
+    "yazi.nvim": {
+      "rev": "c99f88a672b915c508748a723c17c4d5c3cc6f8b",
+      "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }
 }

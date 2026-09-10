@@ -38,13 +38,46 @@ map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", {
 })
 
 -- Глобальные хоткеи для плагинов
--- Открыть файл через Oil по Ctrl+N
-map("n", "<C-n>", "<cmd>Oil<CR>", {
-  desc = "Файлы: открыть Oil",
+map("n", "<C-n>", "<cmd>Yazi<CR>", {
+  desc = "Файлы: открыть Yazi",
+  silent = true,
+})
+-- Yazi: открыть в текущей директории
+map("n", "<leader>y", "<cmd>Yazi<CR>", {
+  desc = "Файлы: открыть Yazi",
   silent = true,
 })
 -- Markdown: переключить красивый вид
 map("n", "<leader>mr", "<cmd>RenderMarkdown toggle<CR>", {
   desc = "Markdown: переключить красивый вид",
+  silent = true,
+})
+
+-- LSP: переключатель
+map("n", "<C-\\>", function()
+  local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+  local bufnr = vim.api.nvim_get_current_buf()
+  
+  if #buf_clients == 0 then
+    -- LSP выключен, включаем
+    local all_clients = vim.lsp.get_clients()
+    for _, client in ipairs(all_clients) do
+      vim.lsp.buf_attach_client(bufnr, client.id)
+    end
+    -- Сбрасываем состояние буфера
+    vim.b.lsp_attached = nil
+    vim.b.diagnostics_enabled = nil
+    vim.notify("LSP: включён", vim.log.levels.INFO)
+  else
+    -- LSP включён, выключаем
+    for _, client in ipairs(buf_clients) do
+      vim.lsp.buf_detach_client(bufnr, client.id)
+    end
+    vim.b.lsp_attached = false
+    vim.b.diagnostics_enabled = false
+    vim.notify("LSP: выключен", vim.log.levels.INFO)
+  end
+end, {
+  desc = "LSP: переключить",
   silent = true,
 })
