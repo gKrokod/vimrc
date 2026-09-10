@@ -1,3 +1,5 @@
+-- lua/config/keymaps.lua
+
 local map = vim.keymap.set
 
 -- Отключение стрелок в normal-режиме
@@ -18,29 +20,31 @@ map("n", "[q", ":cprevious<CR>")
 map("n", "<leader>ev", ":edit $MYVIMRC<CR>", {
   desc = "Открыть init.lua",
 })
--- Netrw
-map("n", "<C-n>", "<cmd>Lexplore<CR>", {
-  desc = "Файловый менеджер Netrw",
-})
-map("n", "<leader>ed", "<cmd>Lexplore %:p:h<CR>", {
-  desc = "Netrw: папка текущего файла",
-})
+
 -- Telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", {
   desc = "Найти файлы",
+  silent = true,
 })
 
 map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", {
   desc = "Поиск по тексту",
+  silent = true,
 })
 
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", {
   desc = "Буферы",
+  silent = true,
 })
 
--- TComment
--- map({ "n", "x" }, "<leader>c", "<cmd>TComment<CR>", {
-  -- desc = "Закомментировать строку/блок",
--- })
-
-
+-- Глобальные хоткеи для плагинов
+-- Открыть файл через Oil по Ctrl+N
+map("n", "<C-n>", "<cmd>Oil<CR>", {
+  desc = "Файлы: открыть Oil",
+  silent = true,
+})
+-- Markdown: переключить красивый вид
+map("n", "<leader>mr", "<cmd>RenderMarkdown toggle<CR>", {
+  desc = "Markdown: переключить красивый вид",
+  silent = true,
+})

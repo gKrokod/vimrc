@@ -1,8 +1,17 @@
+-- init.lua
+
 vim.g.mapleader = "\\"
--- vim.g.maplocalleader = "\\"
-require("options")
-require("keymaps")
-require("autocmds")
-require("plugins")
+
+require("config.options")
+require("config.keymaps")
+require("config.plugins")
+
+-- Загрузка конфигов плагинов
+require("plugins.oil")
+require("plugins.treesitter")
+require("plugins.markdown")
+require("plugins.devicons")
+require("plugins.lualine")
+require("plugins.mason")
+
 require("lsp")
-require("mynetrw")
