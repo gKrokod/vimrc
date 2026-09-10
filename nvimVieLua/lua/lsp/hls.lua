@@ -1,12 +1,20 @@
----@type vim.lsp.Config
-return {
+-- lua/lsp/hls.lua
+
+vim.lsp.config("hls", {
   cmd = { 'haskell-language-server-wrapper', '--lsp' },
-  filetypes = { 'haskell', 'lhaskell','cabal' },
-  root_markers = {'hie.yaml', 'stack.yaml', 'cabal.project', '*.cabal', 'package.yaml', '.git', },
+  filetypes = { 'haskell', 'lhaskell', 'cabal' },
+  root_markers = {
+    'hie.yaml',
+    'stack.yaml',
+    'cabal.project',
+    '*.cabal',
+    'package.yaml',
+    '.git',
+  },
   settings = {
     haskell = {
       formattingProvider = 'ormolu',
       cabalFormattingProvider = 'cabal-fmt',
     },
   },
-}
+})
