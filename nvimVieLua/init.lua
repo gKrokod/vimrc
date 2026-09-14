@@ -12,6 +12,7 @@ require("plugins.markdown")
 -- require("plugins.devicons")
 require("plugins.lualine")
 require("plugins.mason")
+-- require("plugins.snacks")
 require("plugins.yazi")
 
 require("lsp")

@@ -34,10 +34,6 @@ vim.pack.add({
     name = "lualine.nvim",
   },
   {
-    src = "https://github.com/stevearc/oil.nvim",
-    name = "oil.nvim",
-  },
-  {
     src = "https://github.com/mason-org/mason.nvim",
     name = "mason.nvim",
   },
