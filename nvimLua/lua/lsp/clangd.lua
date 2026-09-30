@@ -10,7 +10,7 @@ vim.lsp.config("clangd", {
     "Makefile",
     ".git",
   },
-  capabilities = vim.lsp.protocol.make_client_capabilities(),
+  -- capabilities = vim.lsp.protocol.make_client_capabilities(),
   init_options = {
     usePlaceholders = true,
     completeUnimported = true,

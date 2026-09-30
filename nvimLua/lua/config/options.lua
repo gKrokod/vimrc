@@ -28,4 +28,4 @@ vim.opt.path:append("**")
 vim.opt.wildmenu = true
 
 -- Тема PaperColor
-vim.opt.background = "light"
+vim.opt.background = "dark"

@@ -1,8 +1,0 @@
-if (-not (Test-Path $PROFILE)) {
-    New-Item -Type File -Force $PROFILE
-}
-
-notepad $PROFILE
-
-
-function vim { nvim @args }

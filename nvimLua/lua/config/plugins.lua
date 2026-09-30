@@ -2,6 +2,10 @@
 
 vim.pack.add({
   {
+    src = "https://codeberg.org/ziglang/zig.vim",
+    name = "ziglang",
+  },
+  {
     src = "https://github.com/NLKNguyen/papercolor-theme",
     name = "papercolor-theme",
   },
