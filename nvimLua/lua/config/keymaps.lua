@@ -53,6 +53,15 @@ map("n", "<leader>mr", "<cmd>RenderMarkdown toggle<CR>", {
   silent = true,
 })
 
+map("n", "<leader>mp", "<cmd>LivePreview start<CR>", {
+  desc = "Markdown: открыть preview",
+  silent = true,
+})
+
+map("n", "<leader>mc", "<cmd>LivePreview close<CR>", {
+  desc = "Markdown: закрыть preview",
+  silent = true,
+})
 -- LSP: переключатель
 map("n", "<C-\\>", function()
   local buf_clients = vim.lsp.get_clients({ bufnr = 0 })

@@ -23,6 +23,7 @@ require("nvim-treesitter").compilers = {
 
 require("nvim-treesitter").setup({
   ensure_installed = {
+    "latex",
     "c",
     "cpp",
     "go",

@@ -2,6 +2,27 @@
 
 vim.pack.add({
   {
+    src = "https://github.com/brianhuster/live-preview.nvim",
+    name = "live-preview.nvim",
+  },
+  {
+    src = "https://github.com/windwp/nvim-autopairs",
+    name = "nvim-autopairs",
+  },
+  {
+    src = "https://github.com/L3MON4D3/LuaSnip",
+    name = "LuaSnip",
+    version = "v2.5.0",
+  },
+  {
+    src = "https://github.com/iurimateus/luasnip-latex-snippets.nvim",
+    name = "luasnip-latex-snippets.nvim",
+  },
+  -- {
+  --   src = "https://github.com/techwizrd/render-latex.nvim",
+  --   name = "render-latex",
+  -- },
+  {
     src = "https://codeberg.org/ziglang/zig.vim",
     name = "ziglang",
   },
