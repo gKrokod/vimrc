@@ -1,0 +1,63 @@
+[general]
+working_directory = "C:/_work"
+
+[env]
+TERM = "xterm-256color"
+
+[mouse]
+hide_when_typing = true
+
+
+
+[window]
+opacity = 0.9
+
+[font]
+normal = { family = "MonaspiceAr Nerd Font Mono", style = "Regular" }
+bold = { family = "MonaspiceAr Nerd Font Mono", style = "Bold" }
+size = 12.5
+
+[cursor]
+style = { shape = "Beam", blinking = "Off" }
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.primary]
+background = "#141414"
+foreground = "#BAB7B6"
+
+[colors.cursor]
+text = "#141414"
+cursor = "#37E57B"
+
+[colors.selection]
+text = "#141414"
+background = "#8DB8E5"
+
+[colors.normal]
+black = "#000000"
+red = "#CF494C"
+green = "#60B442"
+yellow = "#DB9C11"
+blue = "#0575D8"
+magenta = "#AF5ED2"
+cyan = "#1DB6BB"
+white = "#BAB7B6"
+
+[colors.bright]
+black = "#817E7E"
+red = "#FF643B"
+green = "#37E57B"
+yellow = "#FCCD1A"
+blue = "#688DFD"
+magenta = "#ED6FE9"
+cyan = "#32E0FB"
+white = "#DEE3E4"
+
+[keyboard]
+bindings = [
+    { key = "F11", action = "ToggleFullscreen" },
+    { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+    { key = "Q", mods = "Control|Shift", action = "Quit" }
+]
