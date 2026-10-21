@@ -90,3 +90,16 @@ end, {
   desc = "LSP: переключить",
   silent = true,
 })
+
+-- Terminal mode (term://): F12 = exit to Normal mode; Alt+hjkl = jump to adjacent window
+vim.keymap.set('t', '<F12>', '<C-\\><C-n>', { desc = 'terminal: exit to Normal mode' })
+vim.keymap.set('t', '<A-h>', '<C-\\><C-n><C-w>h', { desc = 'terminal: go to left window' })
+vim.keymap.set('t', '<A-j>', '<C-\\><C-n><C-w>j', { desc = 'terminal: go to lower window' })
+vim.keymap.set('t', '<A-k>', '<C-\\><C-n><C-w>k', { desc = 'terminal: go to upper window' })
+vim.keymap.set('t', '<A-l>', '<C-\\><C-n><C-w>l', { desc = 'terminal: go to right window' })
+
+-- Editor windows (Normal mode): Alt+hjkl = jump to adjacent window
+vim.keymap.set('n', '<A-h>', '<C-w>h', { desc = 'editor: go to left window' })
+vim.keymap.set('n', '<A-j>', '<C-w>j', { desc = 'editor: go to lower window' })
+vim.keymap.set('n', '<A-k>', '<C-w>k', { desc = 'editor: go to upper window' })
+vim.keymap.set('n', '<A-l>', '<C-w>l', { desc = 'editor: go to right window' })
