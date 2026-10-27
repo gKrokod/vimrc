@@ -2,7 +2,7 @@
 
 
 vim.lsp.config("zls", {
-  cmd = { "C:/Tools/zls017/zls.exe" },
+  cmd = { "C:/Tools/zls-x86_64-windows-0.17.0/zls.exe" },
   filetypes = { "zig" },
 
   root_markers = {
